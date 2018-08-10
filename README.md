@@ -1,0 +1,3 @@
+# trickl
+
+a thoughts platform
