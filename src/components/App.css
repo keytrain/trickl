@@ -13,12 +13,13 @@ nav {
   left: 0;
   right: 0;
   top: 0;
+  display: flex;
 }
-.logo,
+.logo {
+  flex: 1 1 auto;
+}
 .user {
-  display: inline-block;
-  vertical-align: top;
-  width: 50%;
+  flex: 1 0 auto;
 }
 .user {
   text-align: right;

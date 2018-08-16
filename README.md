@@ -1,3 +1,3 @@
 # trickl
 
-a thoughts platform
+ui

@@ -1,11 +1,10 @@
 import React, { Component } from "react"
+import { connect } from "react-redux"
 
-import gLib from "./lib/generalLibrary"
-import dummyData from "./dummyData.json"
+import gLib from "../../util/generalLibrary"
+import { setAuthenticated, logoutUser } from "../../actions/currentUserActions"
 
-import "./App.css"
-
-class App extends Component {
+class DashComponent extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -15,6 +14,20 @@ class App extends Component {
           content: [],
         },
       ],
+    }
+  }
+
+  componentDidMount() {
+    const { authenticated } = this.props
+    if (!authenticated) {
+      this.props.history.push("/login")
+    }
+  }
+
+  componentDidUpdate() {
+    const { authenticated } = this.props
+    if (!authenticated) {
+      this.props.history.push("/")
     }
   }
 
@@ -45,14 +58,25 @@ class App extends Component {
     // e.target.style.height = e.target.scrollHeight + "px";
   }
 
+  handleLogout = event => {
+    event.preventDefault()
+    const { logout } = this.props
+    logout()
+  }
+
   render() {
     const { timeline } = this.state
-    console.log(dummyData)
+
     return (
       <div className="wrapper">
         <nav>
           <div className="logo">trickl</div>
-          <div className="user">anonymous</div>
+
+          <div className="user">
+            <button onClick={this.handleLogout} className="button-secondary">
+              logout
+            </button>
+          </div>
         </nav>
         <div className="topics">
           <small>...</small>
@@ -95,4 +119,23 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = state => {
+  const {
+    currentUser: {
+      session: { authenticated },
+    },
+  } = state
+  return {
+    authenticated,
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  setAuth: status => dispatch(setAuthenticated(status)),
+  logout: () => dispatch(logoutUser()),
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DashComponent)
