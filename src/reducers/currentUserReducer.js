@@ -1,4 +1,4 @@
-import { combineReducers } from "redux"
+import { combineReducers } from "redux";
 
 import {
   SET_AUTHENTICATED,
@@ -8,50 +8,61 @@ import {
   LOGIN_REQUESTED,
   LOGIN_FAILURE,
   LOGOUT_SUCCESS,
-} from "../actions/currentUserActions"
+  SAVE_USER_INFO,
+} from "../actions/currentUserActions";
 
 const authenticated = (state = false, { type, status }) => {
   switch (type) {
     case SET_AUTHENTICATED:
-      return status
+      return status;
     default:
-      return state
+      return state;
   }
-}
+};
 
 const loading = (state = false, { type }) => {
   switch (type) {
     case LOAD_SESSION_REQUESTED:
-      return true
+      return true;
     case LOAD_SESSION_COMPLETED:
-      return false
+      return false;
     default:
-      return state
+      return state;
   }
-}
+};
 
 const loginStatus = (state = "LOGIN", { type }) => {
   switch (type) {
     case LOGIN_REQUESTED:
-      return "CHECKING"
+      return "CHECKING";
     case LOGIN_FAILURE:
-      return "INCORRECT CREDENTIALS"
+      return "INCORRECT CREDENTIALS";
     case LOGIN_SUCCESS:
-      return "SUCCESS"
+      return "SUCCESS";
     case LOGOUT_SUCCESS:
     default:
-      return state
+      return state;
   }
-}
+};
+
+const userData = (state = {}, { type, info }) => {
+  switch (type) {
+    case SAVE_USER_INFO:
+      return info;
+    default:
+      return state;
+  }
+};
 
 const session = combineReducers({
   loading,
   authenticated,
   loginStatus,
-})
+});
 
 const currentUserReducer = combineReducers({
   session,
-})
+  userData,
+});
 
-export default currentUserReducer
+export default currentUserReducer;

@@ -1,14 +1,14 @@
-import React, { Component } from "react"
-import { Redirect } from "react-router-dom"
-import { connect } from "react-redux"
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 
 class AuthComponent extends Component {
   render() {
-    const { authenticated } = this.props
+    const { authenticated } = this.props;
     if (authenticated) {
-      return <Redirect to={"/dash"} />
+      return <Redirect to={"/dash"} />;
     } else {
-      return <Redirect to={"/login"} />
+      return <Redirect to={"/login"} />;
     }
   }
 }
@@ -16,10 +16,10 @@ class AuthComponent extends Component {
 const mapStateToProps = state => {
   const {
     currentUser: { authenticated },
-  } = state
+  } = state;
   return {
     authenticated,
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps)(AuthComponent)
+export default connect(mapStateToProps)(AuthComponent);

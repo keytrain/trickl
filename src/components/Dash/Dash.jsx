@@ -1,12 +1,15 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import gLib from "../../util/generalLibrary"
-import { setAuthenticated, logoutUser } from "../../actions/currentUserActions"
+import gLib from "../../util/generalLibrary";
+import { setAuthenticated, logoutUser } from "../../actions/currentUserActions";
+import Thought from "./Thought";
+
+import "./Dash.css";
 
 class DashComponent extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       timeline: [
         {
@@ -14,26 +17,26 @@ class DashComponent extends Component {
           content: [],
         },
       ],
-    }
+    };
   }
 
   componentDidMount() {
-    const { authenticated } = this.props
+    const { authenticated } = this.props;
     if (!authenticated) {
-      this.props.history.push("/login")
+      this.props.history.push("/login");
     }
   }
 
   componentDidUpdate() {
-    const { authenticated } = this.props
+    const { authenticated } = this.props;
     if (!authenticated) {
-      this.props.history.push("/")
+      this.props.history.push("/");
     }
   }
 
   addMessage = () => {
     this.setState(prevState => {
-      let today = new Date()
+      let today = new Date();
 
       if (today.toDateString() === prevState.timeline[0].date.toDateString()) {
         prevState.timeline[0].content.unshift({
@@ -42,43 +45,36 @@ class DashComponent extends Component {
             2
           )}:${gLib.pad(today.getSeconds(), 2)}`,
           message: "A message",
-        })
+        });
       } else {
         prevState.timeline.unshift({
           date: new Date(),
           content: [],
-        })
+        });
       }
-      this.forceUpdate()
-    })
-  }
+      this.forceUpdate();
+    });
+  };
 
   handleEntry = e => {
-    // e.target.style.height = "auto";
-    // e.target.style.height = e.target.scrollHeight + "px";
-  }
+    const { style } = e.target;
+    style.height = "auto";
+    const newHeight = e.target.scrollHeight;
+    style.height = newHeight + "px";
+  };
 
   handleLogout = event => {
-    event.preventDefault()
-    const { logout } = this.props
-    logout()
-  }
+    event.preventDefault();
+    const { logout } = this.props;
+    logout();
+  };
 
   render() {
-    const { timeline } = this.state
+    const { timeline } = this.state;
 
     return (
       <div className="wrapper">
-        <nav>
-          <div className="logo">trickl</div>
-
-          <div className="user">
-            <button onClick={this.handleLogout} className="button-secondary">
-              logout
-            </button>
-          </div>
-        </nav>
-        <div className="topics">
+        {/* <div className="topics">
           <small>...</small>
           <div>
             webdev <small>...</small>
@@ -86,36 +82,44 @@ class DashComponent extends Component {
           <div className="subtopic">
             trickl <small>...</small>
           </div>
-        </div>
+        </div> */}
+
         <div className="content">
-          <div className="topic-title">
-            <h5>trickl</h5>
-          </div>
-          <div className="topic-actions">
-            <button onClick={this.addMessage}>Add Entry</button>
-          </div>
+          {/* <div className="tags">#tags</div> */}
+          {/* <div className="views">views</div> */}
+          {/* <div className="">
+            <textarea className="topic">topic</textarea>
+          </div> */}
+          {/* <div className="topic-actions">
+            <span onClick={this.addMessage}>Add Entry</span>
+          </div> */}
           {timeline.map(e => (
             <div key={e.date}>
-              <div className="date">
+              {/* <div className="date">
                 <small>{e.date.toDateString()}</small>
-              </div>
-              {e.content.map(e => (
-                <div key={e.timestamp} className="entry-container">
-                  <div className="timestamp">
-                    <small>{e.timestamp}</small>
-                  </div>
-                  <div
-                    contentEditable
-                    className="entry"
-                    onChange={this.handleEntry}
-                  />
-                </div>
+              </div> */}
+              {e.content.map((e, index) => (
+                <Thought
+                  key={index}
+                  thought={e}
+                  handleEntry={this.handleEntry}
+                />
               ))}
             </div>
           ))}
         </div>
+        <nav>
+          <button className="add" onClick={this.addMessage}>
+            +
+          </button>
+          <div className="user">
+            <button onClick={this.handleLogout} className="button-secondary">
+              logout
+            </button>
+          </div>
+        </nav>
       </div>
-    )
+    );
   }
 }
 
@@ -124,18 +128,18 @@ const mapStateToProps = state => {
     currentUser: {
       session: { authenticated },
     },
-  } = state
+  } = state;
   return {
     authenticated,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   setAuth: status => dispatch(setAuthenticated(status)),
   logout: () => dispatch(logoutUser()),
-})
+});
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DashComponent)
+)(DashComponent);

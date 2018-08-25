@@ -25,7 +25,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: #fff;
+  background-color: #fafafa;
 }
 
 h1,
@@ -81,6 +81,9 @@ a:visited {
 a:active {
   color: #888;
 }
+small {
+  font-size: 13px;
+}
 
 input {
   font-family: inherit;
@@ -128,7 +131,7 @@ button,
   border-radius: 4px;
   letter-spacing: 1.2px;
   margin: 2px 0;
-  /* margin: 0 0.5rem; */
+  padding: 0 20px;
 }
 button:first-child,
 .button:first-child {
@@ -188,3 +191,12 @@ button:active,
     transform: rotate(-360deg);
   }
 } */
+
+/* remove webkit stylings */
+input[type="text"],
+input[type="submit"],
+input[type="password"],
+input[type="email"],
+textarea {
+  -webkit-appearance: none;
+}
