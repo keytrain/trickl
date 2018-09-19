@@ -1,16 +1,17 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import Amplify from "aws-amplify"
-import { Provider } from "react-redux"
+import React from "react";
+import ReactDOM from "react-dom";
+import Amplify from "aws-amplify";
+import { Provider } from "react-redux";
 
-import config from "./config"
-import registerServiceWorker from "./registerServiceWorker"
-import configureStore from "./util/configureStore.js"
+import config from "./config";
+import registerServiceWorker from "./registerServiceWorker";
+import configureStore from "./util/configureStore.js";
 
-import "normalize.css"
-import "./index.css"
+import "normalize.css";
+import "./index.css";
 
-import App from "./components/App"
+import App from "./components/App";
+import DevTools from './components/DevTools/DevTools';
 
 Amplify.configure({
   Auth: {
@@ -29,14 +30,17 @@ Amplify.configure({
       },
     ],
   },
-})
+});
 
-const store = configureStore()
+const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
+    <div>
     <App />
+    <DevTools />
+  </div>
   </Provider>,
   document.getElementById("root")
-)
-registerServiceWorker()
+);
+registerServiceWorker();

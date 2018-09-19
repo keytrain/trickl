@@ -1,5 +1,4 @@
 // import { API } from "aws-amplify"
-const storage = window.localStorage;
 
 export const createThought = (parentId, text) => {
   let thought = {

@@ -16,9 +16,9 @@ class ThoughtComponent extends Component {
           onChange={handleEntry}
           // value={thought.message}
         />
-        {/* <div className="timestamp">
+        <div className="timestamp">
           <small>{thought.timestamp}</small>
-        </div> */}
+        </div>
       </div>
     )
   }

@@ -74,6 +74,16 @@ class DashComponent extends Component {
 
     return (
       <div className="wrapper">
+        <nav>
+          <button className="add" onClick={this.addMessage}>
+            +
+          </button>
+          <div className="user">
+            <button onClick={this.handleLogout} className="button-secondary">
+              logout
+            </button>
+          </div>
+        </nav>       
         {/* <div className="topics">
           <small>...</small>
           <div>
@@ -108,16 +118,7 @@ class DashComponent extends Component {
             </div>
           ))}
         </div>
-        <nav>
-          <button className="add" onClick={this.addMessage}>
-            +
-          </button>
-          <div className="user">
-            <button onClick={this.handleLogout} className="button-secondary">
-              logout
-            </button>
-          </div>
-        </nav>
+        
       </div>
     );
   }

@@ -1,8 +1,10 @@
-import { combineReducers } from "redux"
-import currentUser from "./currentUserReducer"
+import { combineReducers } from "redux";
+import currentUser from "./currentUserReducer";
+import buffer from "./bufferReducer";
 
 const rootReducer = combineReducers({
   currentUser,
-})
+  buffer,
+});
 
-export default rootReducer
+export default rootReducer;
