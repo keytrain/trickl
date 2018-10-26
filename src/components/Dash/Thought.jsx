@@ -1,8 +1,10 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
+
+import "./Thought.css";
 
 class ThoughtComponent extends Component {
   render() {
-    const { thought, handleEntry } = this.props
+    const { thought, handleEntry } = this.props;
     return (
       <div className="entry-container">
         {/* <div
@@ -16,12 +18,12 @@ class ThoughtComponent extends Component {
           onChange={handleEntry}
           // value={thought.message}
         />
-        <div className="timestamp">
-          <small>{thought.timestamp}</small>
+        <div className="meta">
+          <span>{thought.timestamp}</span>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default ThoughtComponent
+export default ThoughtComponent;

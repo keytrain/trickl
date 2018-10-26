@@ -11,6 +11,7 @@ class DashComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      hasEmpty: false,
       timeline: [
         {
           date: new Date(),
@@ -25,6 +26,7 @@ class DashComponent extends Component {
     if (!authenticated) {
       this.props.history.push("/login");
     }
+    this.addMessage();
   }
 
   componentDidUpdate() {
@@ -35,32 +37,51 @@ class DashComponent extends Component {
   }
 
   addMessage = () => {
-    this.setState(prevState => {
-      let today = new Date();
+    const { hasEmpty } = this.state;
+    if (!hasEmpty) {
+      this.setState(prevState => {
+        prevState.hasEmpty = true;
+        let today = new Date();
 
-      if (today.toDateString() === prevState.timeline[0].date.toDateString()) {
-        prevState.timeline[0].content.unshift({
-          timestamp: `${gLib.pad(today.getHours(), 2)}:${gLib.pad(
-            today.getMinutes(),
-            2
-          )}:${gLib.pad(today.getSeconds(), 2)}`,
-          message: "A message",
-        });
-      } else {
-        prevState.timeline.unshift({
-          date: new Date(),
-          content: [],
-        });
-      }
+        if (
+          today.toDateString() === prevState.timeline[0].date.toDateString()
+        ) {
+          prevState.timeline[0].content = [].concat(
+            {
+              timestamp: `${gLib.pad(today.getHours(), 2)}:${gLib.pad(
+                today.getMinutes(),
+                2
+              )}:${gLib.pad(today.getSeconds(), 2)}`,
+              message: "A message",
+            },
+            prevState.timeline[0].content
+          );
+          console.log(prevState.timeline[0].content);
+        } else {
+          prevState.timeline = [].concat(
+            {
+              date: new Date(),
+              content: [],
+            },
+            prevState.timeline
+          );
+        }
+      });
       this.forceUpdate();
-    });
+    }
   };
 
   handleEntry = e => {
-    const { style } = e.target;
+    const { style, value } = e.target;
+    const { hasEmpty } = this.state;
     style.height = "auto";
     const newHeight = e.target.scrollHeight;
     style.height = newHeight + "px";
+    if (hasEmpty && value.length) {
+      this.setState({ hasEmpty: false });
+    } else if (!hasEmpty && value.length === 0) {
+      this.setState({ hasEmpty: true });
+    }
   };
 
   handleLogout = event => {
@@ -75,25 +96,26 @@ class DashComponent extends Component {
     return (
       <div className="wrapper">
         <nav>
-          <button className="add" onClick={this.addMessage}>
-            +
-          </button>
+          <div className="left" />
+          <div className="logo">trickl</div>
           <div className="user">
+            <div className="avatar" />
             <button onClick={this.handleLogout} className="button-secondary">
               logout
             </button>
           </div>
-        </nav>       
-        {/* <div className="topics">
-          <small>...</small>
-          <div>
-            webdev <small>...</small>
-          </div>
-          <div className="subtopic">
-            trickl <small>...</small>
-          </div>
-        </div> */}
-
+        </nav>
+        <div className={"menu"}>
+          <button className="add" onClick={this.addMessage}>
+            text
+          </button>
+          <button className="add" onClick={this.addMessage}>
+            category
+          </button>
+          <button className="add" onClick={this.addMessage}>
+            progress
+          </button>
+        </div>
         <div className="content">
           {/* <div className="tags">#tags</div> */}
           {/* <div className="views">views</div> */}
@@ -118,7 +140,6 @@ class DashComponent extends Component {
             </div>
           ))}
         </div>
-        
       </div>
     );
   }
