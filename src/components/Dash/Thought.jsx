@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createThoughtRequest } from "../../actions/thoughtActions";
+
+import "./Thought.css";
 class ThoughtComponent extends Component {
   constructor(props) {
     super(props);

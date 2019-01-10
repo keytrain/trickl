@@ -31,8 +31,7 @@ class DashComponent extends Component {
     const { thoughtRoot } = this.props;
     return (
       <div className="wrapper">
-        <div className="content">
-        </div>
+        <div className="content" />
         <nav>
           {/* <button className="add" onClick={this.addMessage}>
             +
@@ -43,6 +42,7 @@ class DashComponent extends Component {
             </button>
           </div>
         </nav>
+        {thoughtRoot && <Column root={thoughtRoot} />}
       </div>
     );
   }
