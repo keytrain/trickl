@@ -32,7 +32,6 @@ class DashComponent extends Component {
     return (
       <div className="wrapper">
         <div className="content">
-          {thoughtRoot && <Column root={thoughtRoot} />}
         </div>
         <nav>
           {/* <button className="add" onClick={this.addMessage}>
