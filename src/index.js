@@ -1,16 +1,16 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import Amplify from "aws-amplify"
-import { Provider } from "react-redux"
+import React from "react";
+import ReactDOM from "react-dom";
+import Amplify from "aws-amplify";
+import { Provider } from "react-redux";
 
-import config from "./config"
-import registerServiceWorker from "./registerServiceWorker"
-import configureStore from "./util/configureStore.js"
+import config from "./config";
+import registerServiceWorker from "./registerServiceWorker";
+import configureStore from "./util/configureStore.js";
 
-import "normalize.css"
-import "./index.css"
+import "normalize.css";
+import "./index.css";
 
-import App from "./components/App"
+import App from "./components/App";
 
 Amplify.configure({
   Auth: {
@@ -27,16 +27,21 @@ Amplify.configure({
         endpoint: config.apiGateway.URL,
         region: config.apiGateway.REGION,
       },
+      {
+        name: "thoughts",
+        endpoint: config.apiGateway.URL,
+        region: config.apiGateway.REGION,
+      },
     ],
   },
-})
+});
 
-const store = configureStore()
+const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById("root")
-)
-registerServiceWorker()
+);
+registerServiceWorker();
