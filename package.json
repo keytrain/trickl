@@ -3,24 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "aws-amplify": "^1.0.5",
-    "moment": "^2.22.2",
-    "normalize.css": "^8.0.0",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-redux": "^5.0.7",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.3.1",
-    "redux": "^4.0.0",
-    "redux-saga": "^0.16.0"
+    "aws-amplify": "1.1.19",
+    "moment": "2.23.0",
+    "normalize.css": "8.0.1",
+    "react": "16.7",
+    "react-dom": "16.7",
+    "react-redux": "6.0.0",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
+    "redux": "4.0.1",
+    "redux-saga": "0.16.2"
   },
   "devDependencies": {
-    "prettier": "^1.14.2",
-    "react-scripts": "^1.1.4",
-    "redux-devtools": "^3.4.1",
-    "redux-devtools-dock-monitor": "^1.1.3",
-    "redux-devtools-inspector": "^0.11.3",
-    "redux-devtools-log-monitor": "^1.4.0"
+    "prettier": "^1.15.3",
+    "react-scripts": "2.1.3",
+    "redux-devtools": "3.5.0",
+    "redux-devtools-dock-monitor": "1.1.3",
+    "redux-devtools-inspector": "0.11.3",
+    "redux-devtools-log-monitor": "1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,5 +28,11 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://keytrain.github.io/trickl"
+  "homepage": "https://keytrain.github.io/trickl",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

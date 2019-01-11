@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router";
 import { connect } from "react-redux";
 
 import { setAuthenticated, logoutUser } from "../../actions/currentUserActions";
@@ -7,18 +8,11 @@ import Column from "./Column";
 import "./Dash.css";
 
 class DashComponent extends Component {
-  componentDidMount() {
-    const { authenticated } = this.props;
-    if (!authenticated) {
-      this.props.history.push("/login");
-    }
-  }
-
-  componentDidUpdate() {
-    const { authenticated } = this.props;
-    if (!authenticated) {
-      this.props.history.push("/");
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isProfileOpen: false,
+    };
   }
 
   handleLogout = event => {
@@ -28,21 +22,32 @@ class DashComponent extends Component {
   };
 
   render() {
-    const { thoughtRoot } = this.props;
+    const { authenticated, thoughtRoot } = this.props;
+    const { isProfileOpen } = this.state;
+
+    if (!authenticated) {
+      return <Redirect to="/login" />;
+    }
     return (
       <div className="wrapper">
-        <div className="content" />
         <nav>
-          {/* <button className="add" onClick={this.addMessage}>
-            +
-          </button> */}
           <div className="user">
+            <div
+              className="avatar"
+              onClick={() => this.setState({ isProfileOpen: !isProfileOpen })}
+            />
+          </div>
+        </nav>
+        {isProfileOpen && (
+          <div className="profile-actions">
             <button onClick={this.handleLogout} className="button-secondary">
               logout
             </button>
           </div>
-        </nav>
-        {thoughtRoot && <Column root={thoughtRoot} />}
+        )}
+        <div className="content">
+          {thoughtRoot && <Column root={thoughtRoot} />}
+        </div>
       </div>
     );
   }

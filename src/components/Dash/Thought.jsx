@@ -13,8 +13,15 @@ class ThoughtComponent extends Component {
 
     this.textArea = React.createRef();
   }
+
   componentDidMount() {
     this.refreshHeight();
+  }
+
+  refreshHeight() {
+    this.textArea.current.style.height = "auto";
+    const newHeight = this.textArea.current.scrollHeight;
+    this.textArea.current.style.height = newHeight + "px";
   }
 
   saveEntry = () => {
@@ -24,11 +31,9 @@ class ThoughtComponent extends Component {
     this.setState({ dirty: false });
   };
 
-  refreshHeight() {
-    this.textArea.current.style.height = "auto";
-    const newHeight = this.textArea.current.scrollHeight;
-    this.textArea.current.style.height = newHeight + "px";
-  }
+  resetEntry = () => {
+    this.setState({ draft: "", dirty: false });
+  };
 
   handleEntry = e => {
     const { value } = e.target;
@@ -41,22 +46,22 @@ class ThoughtComponent extends Component {
     const { draft, dirty } = this.state;
     return (
       <div className="entry-container">
-        {/* <div
-      contentEditable
-      className="entry"
-      onChange={this.handleEntry}
-    /> */}
         <textarea
           ref={this.textArea}
           rows="1"
           className="entry"
           onChange={this.handleEntry}
-          value={draft || thought}
+          value={dirty ? draft : thought}
         />
         {dirty && (
-          <button className="save-draft" onClick={this.saveEntry}>
-            Save
-          </button>
+          <div className="entry-actions">
+            <button className="button-secondary" onClick={this.resetEntry}>
+              Cancel
+            </button>
+            <button className="button-secondary" onClick={this.saveEntry}>
+              Save
+            </button>
+          </div>
         )}
         {/* <div className="timestamp">
           <small>{thought.timestamp}</small>

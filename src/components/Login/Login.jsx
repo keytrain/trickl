@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router";
 import { connect } from "react-redux";
 
 import "./Login.css";
@@ -12,20 +13,6 @@ class LoginComponent extends Component {
       email: "",
       password: "",
     };
-  }
-
-  componentDidMount() {
-    const { authenticated } = this.props;
-    if (authenticated) {
-      this.props.history.push("/dash");
-    }
-  }
-
-  componentDidUpdate() {
-    const { loginStatus, history } = this.props;
-    if (loginStatus === "SUCCESS") {
-      history.push("/dash");
-    }
   }
 
   handleEntry = event => {
@@ -43,7 +30,10 @@ class LoginComponent extends Component {
 
   render() {
     const { email, password } = this.state;
-    const { loginStatus } = this.props;
+    const { loginStatus, authenticated } = this.props;
+    if (authenticated) {
+      return <Redirect to="/dash" />;
+    }
     return (
       <div className="login-container">
         <h1>trickl</h1>
@@ -88,12 +78,11 @@ class LoginComponent extends Component {
 const mapStateToProps = state => {
   const {
     currentUser: {
-      session: { authenticated, loginStatus },
+      session: { authenticated },
     },
   } = state;
   return {
     authenticated,
-    loginStatus,
   };
 };
 

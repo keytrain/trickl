@@ -1,25 +1,35 @@
 .entry-container {
-  margin: 10px 0;
+  margin: 0;
 }
 .entry {
   font-family: inherit;
-  line-height: inherit;
+  line-height: 1.35;
+  font-size: 16px;
   resize: none;
   outline: none;
   /* border: 1.5px solid hsl(212, 30%, 94%); */
   border: 0;
+  border-top: 1px solid hsl(212, 30%, 94%);
   border-bottom: 1px solid hsl(212, 30%, 94%);
   vertical-align: top;
   width: 100%;
-  padding: 10px 10px;
+  padding: 15px 10px;
   overflow: auto;
   overflow-y: hidden;
-  color: #444;
-  background-color: #fff;
+  color: #333;
+  background: none;
 }
 .entry:focus {
   background-color: #fff;
 }
+
+.entry-actions button {
+  width: 50%;
+  height: 30px;
+  background: none;
+  color: #888;
+}
+
 .date {
   color: #bbb;
 }

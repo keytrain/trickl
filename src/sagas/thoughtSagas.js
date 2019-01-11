@@ -11,8 +11,8 @@ import {
 
 export function* createNewThought({ data: { thoughtRoot, text } }) {
   try {
-    yield call(createThought, thoughtRoot, text);
-    yield put(createThoughtSuccess());
+    const res = yield call(createThought, thoughtRoot, text);
+    yield put(createThoughtSuccess(res));
   } catch (e) {
     console.error(e.message);
     yield put(createThoughtFailure());
