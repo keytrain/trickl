@@ -4,7 +4,6 @@ import Amplify from "aws-amplify";
 import { Provider } from "react-redux";
 
 import config from "./config";
-import registerServiceWorker from "./registerServiceWorker";
 import configureStore from "./util/configureStore.js";
 
 import "normalize.css";
@@ -41,10 +40,9 @@ const store = configureStore();
 ReactDOM.render(
   <Provider store={store}>
     <div>
-    <App />
-    {/* <DevTools /> */}
-  </div>
+      <App />
+      {/* <DevTools /> */}
+    </div>
   </Provider>,
   document.getElementById("root")
 );
-registerServiceWorker();
