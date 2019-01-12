@@ -15,7 +15,6 @@ class ColumnComponent extends Component {
       //     content: [],
       //   },
       // ],
-      thoughts: props.children,
     };
   }
 
@@ -41,17 +40,13 @@ class ColumnComponent extends Component {
   };
 
   render() {
-    const { thoughtRoot } = this.props;
-    const { thoughts } = this.state;
+    const { thoughtRoot, currColumnText } = this.props;
     return (
       <div>
-        {thoughts.map(thought => (
-          <Thought
-            parentId={thoughtRoot}
-            thought={thought.content.text}
-            key={thought.id}
-          />
-        ))}
+        {currColumnText &&
+          currColumnText.map((text, idx) => (
+            <Thought parentId={thoughtRoot} thought={text} key={idx} />
+          ))}
       </div>
     );
   }
@@ -59,15 +54,14 @@ class ColumnComponent extends Component {
 
 const mapStateToProps = state => {
   const {
-    data: {
-      thoughts: { children },
-    },
     currentUser: {
       userData: { thoughtRoot },
     },
+    data: { currColumnText },
   } = state;
+  console.log(currColumnText);
   return {
-    children,
+    currColumnText,
     thoughtRoot,
   };
 };

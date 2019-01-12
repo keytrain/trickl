@@ -18,6 +18,11 @@ class ThoughtComponent extends Component {
     this.refreshHeight();
   }
 
+  componentDidUpdate() {
+    const { thought } = this.props;
+    console.log(thought);
+  }
+
   refreshHeight() {
     this.textArea.current.style.height = "auto";
     const newHeight = this.textArea.current.scrollHeight;

@@ -78,11 +78,12 @@ class LoginComponent extends Component {
 const mapStateToProps = state => {
   const {
     currentUser: {
-      session: { authenticated },
+      session: { authenticated, loginStatus },
     },
   } = state;
   return {
     authenticated,
+    loginStatus,
   };
 };
 

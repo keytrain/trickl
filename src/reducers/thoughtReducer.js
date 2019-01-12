@@ -4,7 +4,7 @@ import {
   CREATE_THOUGHT_SUCCESS,
 } from "../actions/thoughtActions";
 
-const thoughts = (state = [], { type, data }) => {
+const rawColumn = (state = [], { type, data }) => {
   switch (type) {
     case CREATE_THOUGHT_SUCCESS:
     case FETCH_THOUGHT_SUCCESS:
@@ -14,8 +14,30 @@ const thoughts = (state = [], { type, data }) => {
   }
 };
 
+const currColumnText = (state = [], { type, data }) => {
+  switch (type) {
+    case CREATE_THOUGHT_SUCCESS:
+    case FETCH_THOUGHT_SUCCESS:
+      return data.children.map(thought => thought.content.text);
+    default:
+      return state;
+  }
+};
+
+const currRoot = (state = "", { type, data }) => {
+  switch (type) {
+    case CREATE_THOUGHT_SUCCESS:
+    case FETCH_THOUGHT_SUCCESS:
+      return data.id;
+    default:
+      return state;
+  }
+};
+
 const thoughtReducer = combineReducers({
-  thoughts,
+  rawColumn,
+  currRoot,
+  currColumnText,
 });
 
 export default thoughtReducer;

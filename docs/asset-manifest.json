@@ -1,15 +1,15 @@
 {
-  "main.css": "/trickl/static/css/main.780d6b41.chunk.css",
-  "main.js": "/trickl/static/js/main.5678ae9c.chunk.js",
-  "main.js.map": "/trickl/static/js/main.5678ae9c.chunk.js.map",
+  "main.css": "/trickl/static/css/main.7983d75a.chunk.css",
+  "main.js": "/trickl/static/js/main.f21ba823.chunk.js",
+  "main.js.map": "/trickl/static/js/main.f21ba823.chunk.js.map",
   "static/css/1.5d7195f4.chunk.css": "/trickl/static/css/1.5d7195f4.chunk.css",
   "static/js/1.884cb4fe.chunk.js": "/trickl/static/js/1.884cb4fe.chunk.js",
   "static/js/1.884cb4fe.chunk.js.map": "/trickl/static/js/1.884cb4fe.chunk.js.map",
   "runtime~main.js": "/trickl/static/js/runtime~main.f13441c3.js",
   "runtime~main.js.map": "/trickl/static/js/runtime~main.f13441c3.js.map",
   "static/css/1.5d7195f4.chunk.css.map": "/trickl/static/css/1.5d7195f4.chunk.css.map",
-  "static/css/main.780d6b41.chunk.css.map": "/trickl/static/css/main.780d6b41.chunk.css.map",
+  "static/css/main.7983d75a.chunk.css.map": "/trickl/static/css/main.7983d75a.chunk.css.map",
   "index.html": "/trickl/index.html",
-  "precache-manifest.4c07af6575149b4dc8e62c0bbe7e9cc1.js": "/trickl/precache-manifest.4c07af6575149b4dc8e62c0bbe7e9cc1.js",
+  "precache-manifest.beccf6606f1434d7dbca8c28e2f61fa2.js": "/trickl/precache-manifest.beccf6606f1434d7dbca8c28e2f61fa2.js",
   "service-worker.js": "/trickl/service-worker.js"
 }
