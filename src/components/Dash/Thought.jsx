@@ -20,7 +20,6 @@ class ThoughtComponent extends Component {
 
   componentDidUpdate() {
     const { thought } = this.props;
-    console.log(thought);
   }
 
   refreshHeight() {

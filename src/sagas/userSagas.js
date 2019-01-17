@@ -22,9 +22,10 @@ export function* init() {
     if (session) {
       yield put(setAuthenticated(true));
       const userData = yield call(fetchUser);
+      yield put(sessionLoaded());
       yield call(fetchThoughts, { data: { id: userData.thoughtRoot } });
     }
-    yield put(sessionLoaded());
+    // make an action for session load fail?
   } catch (e) {
     console.error(e.message);
     if (e !== "No current user") {
