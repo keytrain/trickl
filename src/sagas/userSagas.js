@@ -12,20 +12,21 @@ import {
   setAuthenticated,
   loadSession,
 } from "../actions/currentUserActions";
+import { fetchThoughtRequest } from "../actions/thoughtActions";
 import { checkSession, login, logout } from "../services/AuthService";
 import { createUser, getUser } from "../services/UserService";
-import { fetchThoughts } from "./thoughtSagas";
 
 export function* init() {
   try {
     const session = yield call(checkSession);
     if (session) {
       yield put(setAuthenticated(true));
-      const userData = yield call(fetchUser);
       yield put(sessionLoaded());
-      yield call(fetchThoughts, { data: { id: userData.thoughtRoot } });
+      const userData = yield call(fetchUser);
+      yield put(fetchThoughtRequest({ id: userData.thoughtRoot }));
+    } else {
+      yield put(sessionLoaded());
     }
-    // make an action for session load fail?
   } catch (e) {
     console.error(e.message);
     if (e !== "No current user") {

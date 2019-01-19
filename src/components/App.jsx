@@ -21,7 +21,7 @@ class AppComponent extends Component {
     return (
       <Router>
         {isLoadingSession ? (
-          ""
+          <div className="loading-content">Checking Session...</div>
         ) : (
           <Switch>
             <Route exact path="/" component={Auth} />
