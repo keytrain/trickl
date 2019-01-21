@@ -3,9 +3,10 @@
   position: relative;
 }
 .entry {
-  font-family: inherit;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+    monospace;
   line-height: 1.35;
-  font-size: 16px;
+  font-size: 14px;
   resize: none;
   outline: none;
   /* border: 1.5px solid hsl(212, 30%, 94%); */

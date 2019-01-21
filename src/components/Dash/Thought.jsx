@@ -54,11 +54,6 @@ class ThoughtComponent extends Component {
     const { draft, dirty } = this.state;
     return (
       <div className="entry-container">
-        <div className="entry-actions-corner">
-          <button className="button-secondary" onClick={this.deleteEntry}>
-            X
-          </button>
-        </div>
         <textarea
           ref={this.textArea}
           rows="1"
@@ -71,6 +66,9 @@ class ThoughtComponent extends Component {
             <Fragment>
               <button className="button-secondary" onClick={this.resetEntry}>
                 Cancel
+              </button>
+              <button className="button-secondary" onClick={this.deleteEntry}>
+                Delete
               </button>
               <button className="button-secondary" onClick={this.saveEntry}>
                 Save

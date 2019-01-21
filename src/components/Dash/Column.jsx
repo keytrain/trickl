@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
 import Thought from "./Thought";
@@ -49,25 +49,27 @@ class ColumnComponent extends Component {
     const { thoughtRoot, currColumnText } = this.props;
     return (
       <div>
-        <div>
-          {currColumnText ? (
-            currColumnText.map((text, idx) => (
-              <Thought
-                parentId={thoughtRoot}
-                thought={text}
-                index={idx}
-                key={idx}
-              />
-            ))
-          ) : (
-            <div className="loading-content">Loading thoughts...</div>
-          )}
-        </div>
-        <div className="add-thought-icon">
-          <button className="button-secondary" onClick={this.addThought}>
-            +
-          </button>
-        </div>
+        {currColumnText ? (
+          <Fragment>
+            <div>
+              {currColumnText.map((text, idx) => (
+                <Thought
+                  parentId={thoughtRoot}
+                  thought={text}
+                  index={idx}
+                  key={idx}
+                />
+              ))}
+            </div>
+            <div className="add-thought-icon">
+              <button className="button-secondary" onClick={this.addThought}>
+                +
+              </button>
+            </div>
+          </Fragment>
+        ) : (
+          <div className="loading-content">Loading thoughts...</div>
+        )}
       </div>
     );
   }
