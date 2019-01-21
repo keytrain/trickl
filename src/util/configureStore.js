@@ -1,6 +1,6 @@
 import { createStore, compose, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
-import DevTools from "../components/DevTools/DevTools";
+// import DevTools from "../components/DevTools/DevTools";
 
 import rootReducer from "../reducers";
 import rootSaga from "../sagas";

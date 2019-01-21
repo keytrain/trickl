@@ -1,7 +1,7 @@
 import { API } from "aws-amplify";
 // const storage = window.localStorage;
 
-export const createThought = (rootId, text) => {
+export const createColumn = (id, text) => {
   // let thought = {
   //   children: [
   //     {
@@ -20,7 +20,7 @@ export const createThought = (rootId, text) => {
   // storage.setItem(parentId, JSON.stringify(thought));
   return API.post("thoughts", "/thoughts", {
     body: {
-      rootId,
+      id,
       text,
     },
   }).catch(e => {
@@ -28,10 +28,42 @@ export const createThought = (rootId, text) => {
   });
 };
 
-export const addThought = id => {};
+export const addThought = (id, text) => {
+  return API.put("thoughts", `/thoughts/${id}`, {
+    body: {
+      action: "add",
+      text,
+    },
+  }).catch(e => {
+    console.warn(e || e.message);
+  });
+};
+
+export const delThought = (id, index) => {
+  return API.put("thoughts", `/thoughts/${id}`, {
+    body: {
+      action: "delete",
+      index,
+    },
+  }).catch(e => {
+    console.warn(e || e.message);
+  });
+};
+
+export const editThought = (id, index, text) => {
+  return API.put("thoughts", `/thoughts/${id}`, {
+    body: {
+      action: "update",
+      index,
+      text,
+    },
+  }).catch(e => {
+    console.warn(e || e.message);
+  });
+};
 
 export const getThought = id => {
-  return API.get("thoughts", `/thoughts/${id}`, {}).catch(e => {
+  return API.get("thoughts", `/thoughts/${id}`).catch(e => {
     console.warn(e.message);
   });
 };

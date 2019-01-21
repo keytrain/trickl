@@ -1,10 +1,10 @@
 {
-  "main.css": "/trickl/static/css/main.70f18187.chunk.css",
-  "main.js": "/trickl/static/js/main.cc3300ab.chunk.js",
-  "static/css/1.f1ab36d0.chunk.css": "/trickl/static/css/1.f1ab36d0.chunk.css",
-  "static/js/1.6b8db5f4.chunk.js": "/trickl/static/js/1.6b8db5f4.chunk.js",
+  "main.css": "/trickl/static/css/main.11e38dbd.chunk.css",
+  "main.js": "/trickl/static/js/main.44645122.chunk.js",
+  "static/css/1.5bdf1f2f.chunk.css": "/trickl/static/css/1.5bdf1f2f.chunk.css",
+  "static/js/1.f6e7b9fc.chunk.js": "/trickl/static/js/1.f6e7b9fc.chunk.js",
   "runtime~main.js": "/trickl/static/js/runtime~main.f13441c3.js",
   "index.html": "/trickl/index.html",
-  "precache-manifest.1e49e67911c889f72da9a7e50c3509b6.js": "/trickl/precache-manifest.1e49e67911c889f72da9a7e50c3509b6.js",
+  "precache-manifest.fbf015b8569192f4a54f1b80329c2866.js": "/trickl/precache-manifest.fbf015b8569192f4a54f1b80329c2866.js",
   "service-worker.js": "/trickl/service-worker.js"
 }

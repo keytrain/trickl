@@ -12,7 +12,7 @@ import {
   setAuthenticated,
   loadSession,
 } from "../actions/currentUserActions";
-import { fetchThoughtRequest } from "../actions/thoughtActions";
+import { fetchColumnRequest } from "../actions/thoughtActions";
 import { checkSession, login, logout } from "../services/AuthService";
 import { createUser, getUser } from "../services/UserService";
 
@@ -23,7 +23,7 @@ export function* init() {
       yield put(setAuthenticated(true));
       yield put(sessionLoaded());
       const userData = yield call(fetchUser);
-      yield put(fetchThoughtRequest({ id: userData.thoughtRoot }));
+      yield put(fetchColumnRequest({ id: userData.thoughtRoot }));
     } else {
       yield put(sessionLoaded());
     }

@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 
 import Thought from "./Thought";
 
-import "./Dash.css";
+import "./Column.css";
+import { addThoughtRequest } from "../../actions/thoughtActions";
 
 class ColumnComponent extends Component {
   constructor(props) {
@@ -39,14 +40,34 @@ class ColumnComponent extends Component {
     // });
   };
 
+  addThought = () => {
+    const { addThought, thoughtRoot } = this.props;
+    addThought(thoughtRoot, " ");
+  };
+
   render() {
     const { thoughtRoot, currColumnText } = this.props;
     return (
       <div>
-        {currColumnText &&
-          currColumnText.map((text, idx) => (
-            <Thought parentId={thoughtRoot} thought={text} key={idx} />
-          ))}
+        <div>
+          {currColumnText ? (
+            currColumnText.map((text, idx) => (
+              <Thought
+                parentId={thoughtRoot}
+                thought={text}
+                index={idx}
+                key={idx}
+              />
+            ))
+          ) : (
+            <div className="loading-content">Loading thoughts...</div>
+          )}
+        </div>
+        <div className="add-thought-icon">
+          <button className="button-secondary" onClick={this.addThought}>
+            +
+          </button>
+        </div>
       </div>
     );
   }
@@ -59,11 +80,17 @@ const mapStateToProps = state => {
     },
     data: { currColumnText },
   } = state;
-  console.log(currColumnText);
   return {
     currColumnText,
     thoughtRoot,
   };
 };
 
-export default connect(mapStateToProps)(ColumnComponent);
+const mapDispatchToProps = dispatch => ({
+  addThought: (id, text) => dispatch(addThoughtRequest({ id, text })),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ColumnComponent);

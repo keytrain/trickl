@@ -1,6 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { createThoughtRequest } from "../../actions/thoughtActions";
+import {
+  editThoughtRequest,
+  delThoughtRequest,
+} from "../../actions/thoughtActions";
 
 import "./Thought.css";
 class ThoughtComponent extends Component {
@@ -18,10 +21,6 @@ class ThoughtComponent extends Component {
     this.refreshHeight();
   }
 
-  componentDidUpdate() {
-    const { thought } = this.props;
-  }
-
   refreshHeight() {
     this.textArea.current.style.height = "auto";
     const newHeight = this.textArea.current.scrollHeight;
@@ -29,9 +28,9 @@ class ThoughtComponent extends Component {
   }
 
   saveEntry = () => {
-    const { parentId, createThought } = this.props;
+    const { parentId, editThought, index } = this.props;
     const { draft } = this.state;
-    createThought(parentId, draft);
+    editThought(parentId, index, draft);
     this.setState({ dirty: false });
   };
 
@@ -45,11 +44,21 @@ class ThoughtComponent extends Component {
     this.setState({ draft: value, dirty: true });
   };
 
+  deleteEntry = () => {
+    const { parentId, delThought, index } = this.props;
+    delThought(parentId, index);
+  };
+
   render() {
     const { thought } = this.props;
     const { draft, dirty } = this.state;
     return (
       <div className="entry-container">
+        <div className="entry-actions-corner">
+          <button className="button-secondary" onClick={this.deleteEntry}>
+            X
+          </button>
+        </div>
         <textarea
           ref={this.textArea}
           rows="1"
@@ -57,16 +66,18 @@ class ThoughtComponent extends Component {
           onChange={this.handleEntry}
           value={dirty ? draft : thought}
         />
-        {dirty && (
-          <div className="entry-actions">
-            <button className="button-secondary" onClick={this.resetEntry}>
-              Cancel
-            </button>
-            <button className="button-secondary" onClick={this.saveEntry}>
-              Save
-            </button>
-          </div>
-        )}
+        <div className="entry-actions">
+          {dirty && (
+            <Fragment>
+              <button className="button-secondary" onClick={this.resetEntry}>
+                Cancel
+              </button>
+              <button className="button-secondary" onClick={this.saveEntry}>
+                Save
+              </button>
+            </Fragment>
+          )}
+        </div>
         {/* <div className="timestamp">
           <small>{thought.timestamp}</small>
         </div> */}
@@ -76,8 +87,9 @@ class ThoughtComponent extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  createThought: (thoughtRoot, text) =>
-    dispatch(createThoughtRequest({ thoughtRoot, text })),
+  editThought: (id, index, text) =>
+    dispatch(editThoughtRequest({ id, index, text })),
+  delThought: (id, index) => dispatch(delThoughtRequest({ id, index })),
 });
 
 export default connect(
