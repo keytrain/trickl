@@ -10,8 +10,9 @@ class ThoughtComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      draft: "",
+      draft: props.thought,
       dirty: false,
+      focus: false,
     };
 
     this.textArea = React.createRef();
@@ -35,7 +36,8 @@ class ThoughtComponent extends Component {
   };
 
   resetEntry = () => {
-    this.setState({ draft: "", dirty: false });
+    const { thought } = this.props;
+    this.setState({ draft: thought, dirty: false });
   };
 
   handleEntry = e => {
@@ -49,8 +51,37 @@ class ThoughtComponent extends Component {
     delThought(parentId, index);
   };
 
+  handleKeyDown = e => {
+    const caretStart = this.textArea.current.selectionStart;
+    const caretEnd = this.textArea.current.selectionEnd;
+    if (e.ctrlKey) {
+      switch (e.keyCode) {
+        case 83:
+          // s
+          e.preventDefault();
+          this.saveEntry();
+          break;
+        case 88:
+          // cut
+          e.preventDefault();
+          break;
+        default:
+      }
+    }
+    if (e.keyCode === 9) {
+      // tab
+      e.preventDefault();
+      if (caretStart === caretEnd) {
+        this.insertTab(2);
+      }
+    }
+  };
+
+  insertTab = tabLength => {
+    document.execCommand("insertText", false, "  ");
+  };
+
   render() {
-    const { thought } = this.props;
     const { draft, dirty } = this.state;
     return (
       <div className="entry-container">
@@ -59,7 +90,10 @@ class ThoughtComponent extends Component {
           rows="1"
           className="entry"
           onChange={this.handleEntry}
-          value={dirty ? draft : thought}
+          value={draft}
+          autoCapitalize="none"
+          spellCheck="false"
+          onKeyDown={this.handleKeyDown}
         />
         <div className="entry-actions">
           {dirty && (
