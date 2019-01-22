@@ -52,6 +52,8 @@ class ThoughtComponent extends Component {
   };
 
   handleKeyDown = e => {
+    this.textArea.current.blur();
+    this.textArea.current.focus();
     const caretStart = this.textArea.current.selectionStart;
     const caretEnd = this.textArea.current.selectionEnd;
     if (e.ctrlKey) {

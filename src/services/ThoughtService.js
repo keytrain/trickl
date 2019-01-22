@@ -32,8 +32,6 @@ export const addThought = (id, text) => {
       action: "add",
       text,
     },
-  }).catch(e => {
-    console.warn(e || e.message);
   });
 };
 
@@ -43,8 +41,6 @@ export const delThought = (id, index) => {
       action: "delete",
       index,
     },
-  }).catch(e => {
-    console.warn(e || e.message);
   });
 };
 
@@ -55,13 +51,9 @@ export const editThought = (id, index, text) => {
       index,
       text,
     },
-  }).catch(e => {
-    console.warn(e || e.message);
   });
 };
 
 export const getThought = id => {
-  return API.get("thoughts", `/thoughts/${id}`).catch(e => {
-    console.warn(e.message);
-  });
+  return API.get("thoughts", `/thoughts/${id}`);
 };

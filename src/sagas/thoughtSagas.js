@@ -36,8 +36,8 @@ export function* _createColumn({ data: { thoughtRoot, text } }) {
 
 export function* _addThought({ data: { id, text } }) {
   try {
-    yield call(addThought, id, text);
-    yield put(addThoughtSuccess(id, text));
+    const newThoughtId = yield call(addThought, id, text);
+    yield put(addThoughtSuccess({ id, newThoughtId, text }));
   } catch (e) {
     console.error(e.message);
     yield put(addThoughtFailure());

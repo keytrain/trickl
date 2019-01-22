@@ -22,7 +22,6 @@ import {
 import {
   fetchColumnRequest,
   createColumnRequest,
-  createColumnSuccess,
   CREATE_COLUMN_SUCCESS,
 } from "../actions/thoughtActions";
 import {

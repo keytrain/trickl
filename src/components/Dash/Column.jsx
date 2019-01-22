@@ -52,12 +52,12 @@ class ColumnComponent extends Component {
         {currColumnText ? (
           <Fragment>
             <div>
-              {currColumnText.map((text, idx) => (
+              {currColumnText.map((e, idx) => (
                 <Thought
                   parentId={thoughtRoot}
-                  thought={text}
+                  thought={e.text}
                   index={idx}
-                  key={idx}
+                  key={e.id}
                 />
               ))}
             </div>

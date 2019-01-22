@@ -9,13 +9,21 @@ import {
 const currColumnText = (state = [], { type, data }) => {
   switch (type) {
     case FETCH_COLUMN_SUCCESS:
-      return data.children.map(thought => thought.content.text);
+      return data.children.map(thought => ({
+        id: thought.id,
+        text: thought.content.text,
+      }));
     case ADD_THOUGHT_SUCCESS:
-      return [].concat(state, data.text);
+      return [].concat(state, { id: data.newThoughtId, text: data.text });
     case DEL_THOUGHT_SUCCESS:
-      return [].concat(state.slice(0, data.index), state.slice(data.index + 1));
+      return [].concat(
+        state.slice(0, data.index),
+        state.slice(Number(data.index) + 1)
+      );
     case EDIT_THOUGHT_SUCCESS:
-      return Object.assign([...state], { [data.index]: data.text });
+      return Object.assign([...state], {
+        [data.index]: { id: state[data.index].id, text: data.text },
+      });
     default:
       return state;
   }
