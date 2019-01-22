@@ -10,13 +10,24 @@ export const checkSession = () => {
 };
 
 export const login = (email, password) => {
-  return Auth.signIn(email, password).catch(e => {
-    console.warn(e.message);
-  });
+  return Auth.signIn(email, password);
 };
 
 export const logout = () => {
-  return Auth.signOut().catch(e => {
-    console.warn(e.message);
+  return Auth.signOut();
+};
+
+export const signup = (email, password) => {
+  return Auth.signUp({
+    username: email,
+    password: password,
   });
+};
+
+export const verifySignup = (email, confirmationCode) => {
+  return Auth.confirmSignUp(email, confirmationCode);
+};
+
+export const resendVerify = email => {
+  return Auth.resendSignUp(email);
 };

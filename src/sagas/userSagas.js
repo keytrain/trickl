@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call, put, take, takeLatest } from "redux-saga/effects";
 
 import {
   LOAD_SESSION_REQUESTED,
@@ -11,9 +11,28 @@ import {
   saveUserInfo,
   setAuthenticated,
   loadSession,
+  SIGNUP_REQUESTED,
+  signUpSuccess,
+  signUpFailure,
+  VERIFY_SIGNUP_REQUESTED,
+  verifySignUpSuccess,
+  verifySignUpFailure,
+  loginUserRequested,
 } from "../actions/currentUserActions";
-import { fetchColumnRequest } from "../actions/thoughtActions";
-import { checkSession, login, logout } from "../services/AuthService";
+import {
+  fetchColumnRequest,
+  createColumnRequest,
+  createColumnSuccess,
+  CREATE_COLUMN_SUCCESS,
+} from "../actions/thoughtActions";
+import {
+  checkSession,
+  login,
+  logout,
+  signup,
+  verifySignup,
+  resendVerify,
+} from "../services/AuthService";
 import { createUser, getUser } from "../services/UserService";
 
 export function* init() {
@@ -66,15 +85,53 @@ export function* logoutUser() {
   }
 }
 
+export function* signupUser({ email, password }) {
+  if (!email || !password) return;
+  try {
+    const result = yield call(signup, email, password);
+    if (result) {
+      yield put(signUpSuccess());
+    }
+  } catch (e) {
+    if (e.name === "UsernameExistsException") {
+      try {
+        yield call(login, email, password);
+      } catch (e) {
+        if (e.name === "UserNotConfirmedException") {
+          yield call(resendVerify, email);
+          yield put(signUpSuccess());
+        }
+      }
+    } else {
+      yield put(signUpFailure());
+    }
+  }
+}
+
+export function* verifyUser({ email, password, confirmationCode }) {
+  if (!email || !password || !confirmationCode) return;
+  try {
+    yield call(verifySignup, email, confirmationCode);
+    yield put(verifySignUpSuccess());
+    yield put(loginUserRequested(email, password));
+  } catch (e) {
+    console.error(e.message);
+    yield put(verifySignUpFailure());
+  }
+}
+
 export function* fetchUser() {
   try {
-    const userInfo = yield call(getUser);
+    let userInfo = yield call(getUser);
     if (!userInfo) {
-      yield call(createUser);
-    } else {
-      yield put(saveUserInfo(userInfo));
-      return userInfo;
+      userInfo = yield call(createUser);
+      yield put(
+        createColumnRequest({ thoughtRoot: userInfo.thoughtRoot, text: " " })
+      );
+      yield take(CREATE_COLUMN_SUCCESS);
     }
+    yield put(saveUserInfo(userInfo));
+    return userInfo;
   } catch (e) {
     console.error(e.message);
   }
@@ -84,6 +141,8 @@ const userSagas = [
   takeLatest(LOAD_SESSION_REQUESTED, init),
   takeLatest(LOGIN_REQUESTED, loginUser),
   takeLatest(LOGOUT_REQUESTED, logoutUser),
+  takeLatest(SIGNUP_REQUESTED, signupUser),
+  takeLatest(VERIFY_SIGNUP_REQUESTED, verifyUser),
 ];
 
 export default userSagas;

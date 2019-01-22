@@ -23,8 +23,6 @@ export const createColumn = (id, text) => {
       id,
       text,
     },
-  }).catch(e => {
-    console.warn(e || e.message);
   });
 };
 

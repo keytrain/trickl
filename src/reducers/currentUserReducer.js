@@ -9,6 +9,12 @@ import {
   LOGIN_FAILURE,
   LOGOUT_SUCCESS,
   SAVE_USER_INFO,
+  SIGNUP_REQUESTED,
+  SIGNUP_FAILURE,
+  SIGNUP_SUCCESS,
+  VERIFY_SIGNUP_SUCCESS,
+  VERIFY_SIGNUP_REQUESTED,
+  VERIFY_SIGNUP_FAILURE,
 } from "../actions/currentUserActions";
 
 const authenticated = (state = false, { type, status }) => {
@@ -40,6 +46,26 @@ const loginStatus = (state = "LOGIN", { type }) => {
     case LOGIN_SUCCESS:
       return "SUCCESS";
     case LOGOUT_SUCCESS:
+      return "LOGIN";
+    default:
+      return state;
+  }
+};
+
+const signUpStatus = (state = "SIGN UP", { type }) => {
+  switch (type) {
+    case SIGNUP_REQUESTED:
+      return "SIGNING UP";
+    case SIGNUP_FAILURE:
+      return "SIGN UP FAILED";
+    case SIGNUP_SUCCESS:
+      return "VERIFY";
+    case VERIFY_SIGNUP_REQUESTED:
+      return "VERIFYING";
+    case VERIFY_SIGNUP_FAILURE:
+      return "INCORRECT CODE";
+    case VERIFY_SIGNUP_SUCCESS:
+      return "SIGN UP";
     default:
       return state;
   }
@@ -58,6 +84,7 @@ const session = combineReducers({
   loading,
   authenticated,
   loginStatus,
+  signUpStatus,
 });
 
 const currentUserReducer = combineReducers({
