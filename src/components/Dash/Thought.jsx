@@ -23,8 +23,20 @@ class ThoughtComponent extends Component {
   }
 
   refreshHeight() {
-    this.textArea.current.style.height = "auto";
-    const newHeight = this.textArea.current.scrollHeight;
+    this.textArea.current.style.height = "inherit";
+    if (
+      this.textArea.current.style.height ===
+      this.textArea.current.scrollHeight + "px"
+    ) {
+      return;
+    }
+    let newHeight = this.textArea.current.scrollHeight;
+    if (newHeight > 499) {
+      this.textArea.current.style.overflowY = "scroll";
+    } else {
+      this.textArea.current.style.overflowY = "hidden";
+      newHeight = this.textArea.current.scrollHeight;
+    }
     this.textArea.current.style.height = newHeight + "px";
   }
 
@@ -37,7 +49,9 @@ class ThoughtComponent extends Component {
 
   resetEntry = () => {
     const { thought } = this.props;
-    this.setState({ draft: thought, dirty: false });
+    this.setState({ draft: thought, dirty: false }, () => {
+      this.refreshHeight();
+    });
   };
 
   handleEntry = e => {
@@ -51,11 +65,15 @@ class ThoughtComponent extends Component {
     delThought(parentId, index);
   };
 
-  handleKeyDown = e => {
+  focusTextArea = () => {
     this.textArea.current.blur();
     this.textArea.current.focus();
+  };
+
+  handleKeyDown = e => {
     const caretStart = this.textArea.current.selectionStart;
     const caretEnd = this.textArea.current.selectionEnd;
+    console.log(e.keyCode);
     if (e.ctrlKey) {
       switch (e.keyCode) {
         case 83:
@@ -67,14 +85,28 @@ class ThoughtComponent extends Component {
           // cut
           e.preventDefault();
           break;
+        case 90:
+          // z
+          this.focusTextArea();
+          break;
         default:
       }
-    }
-    if (e.keyCode === 9) {
-      // tab
-      e.preventDefault();
-      if (caretStart === caretEnd) {
-        this.insertTab(2);
+    } else {
+      switch (e.keyCode) {
+        case 9:
+          // tab
+          e.preventDefault();
+          if (caretStart === caretEnd) {
+            this.focusTextArea();
+            this.insertTab(2);
+          }
+          break;
+        case 27:
+          // esc
+          this.resetEntry();
+          this.textArea.current.blur();
+          break;
+        default:
       }
     }
   };
