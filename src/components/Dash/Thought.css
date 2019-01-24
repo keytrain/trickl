@@ -14,13 +14,13 @@
   /* border-top: 1px solid hsl(212, 30%, 94%); */
   /* border: 1px solid hsl(212, 30%, 94%); */
   /* box-shadow: 0 0 5px 0 hsl(212, 10%, 85%); */
+  background: #f3f3f3;
   border-radius: 10px;
   vertical-align: top;
   width: 100%;
   padding: 15px 10px;
   overflow: hidden;
   color: #333;
-  background: none;
   max-height: 500px;
   -webkit-appearance: none;
   -moz-appearance: none;
