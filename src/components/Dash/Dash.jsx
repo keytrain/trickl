@@ -15,6 +15,15 @@ class DashComponent extends Component {
     };
   }
 
+  componentDidMount = () => {
+    // document.body.onscroll = e => {
+    //   console.log(e);
+    //   if (e.srcElement.activeElement.nodeName === "TEXTAREA") {
+    //     e.stopPropagation();
+    //   }
+    // };
+  };
+
   handleLogout = event => {
     event.preventDefault();
     const { logout } = this.props;

@@ -115,6 +115,13 @@ class ThoughtComponent extends Component {
     document.execCommand("insertText", false, "  ");
   };
 
+  handleTextAreaStyle = () => {
+    const { draft } = this.state;
+    let finalCSS = {};
+    if (!draft) finalCSS.border = "1px dashed #ddd";
+    return finalCSS;
+  };
+
   render() {
     const { draft, dirty } = this.state;
     return (
@@ -123,6 +130,7 @@ class ThoughtComponent extends Component {
           ref={this.textArea}
           rows="1"
           className="entry"
+          style={this.handleTextAreaStyle()}
           onChange={this.handleEntry}
           value={draft}
           autoCapitalize="none"

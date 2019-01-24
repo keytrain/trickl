@@ -9,53 +9,25 @@ import { addThoughtRequest } from "../../actions/thoughtActions";
 class ColumnComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      // timeline: [
-      //   {
-      //     date: new Date(),
-      //     content: [],
-      //   },
-      // ],
-    };
+    this.state = {};
   }
-
-  addMessage = () => {
-    // this.setState(prevState => {
-    //   let today = new Date();
-    //   if (today.toDateString() === prevState.timeline[0].date.toDateString()) {
-    //     prevState.timeline[0].content.unshift({
-    //       timestamp: `${gLib.pad(today.getHours(), 2)}:${gLib.pad(
-    //         today.getMinutes(),
-    //         2
-    //       )}:${gLib.pad(today.getSeconds(), 2)}`,
-    //       message: "A message",
-    //     });
-    //   } else {
-    //     prevState.timeline.unshift({
-    //       date: new Date(),
-    //       content: [],
-    //     });
-    //   }
-    //   this.forceUpdate();
-    // });
-  };
 
   addThought = () => {
     const { addThought, thoughtRoot } = this.props;
-    addThought(thoughtRoot, " ");
+    addThought(thoughtRoot, null);
   };
 
   render() {
     const { thoughtRoot, currColumnText } = this.props;
     return (
-      <div>
+      <div className="column-container">
         {currColumnText ? (
           <Fragment>
             <div>
               {currColumnText.map((e, idx) => (
                 <Thought
                   parentId={thoughtRoot}
-                  thought={e.text}
+                  thought={e.text ? e.text : ""}
                   index={idx}
                   key={e.id}
                 />

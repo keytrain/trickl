@@ -1,5 +1,5 @@
 .entry-container {
-  margin: 10px 20px;
+  margin: 20px 20px;
   position: relative;
 }
 .entry {
@@ -12,9 +12,9 @@
   /* border: 1.5px solid hsl(212, 30%, 94%); */
   border: 0;
   /* border-top: 1px solid hsl(212, 30%, 94%); */
-  border: 1px solid hsl(212, 30%, 94%);
+  /* border: 1px solid hsl(212, 30%, 94%); */
   /* box-shadow: 0 0 5px 0 hsl(212, 10%, 85%); */
-  border-radius: 5px;
+  border-radius: 10px;
   vertical-align: top;
   width: 100%;
   padding: 15px 10px;

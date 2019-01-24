@@ -4,23 +4,23 @@ self.__precacheManifest = [
     "url": "/trickl/static/js/runtime~main.f13441c3.js"
   },
   {
-    "revision": "d8f5a82b9df19f75a4a6",
-    "url": "/trickl/static/js/main.d8f5a82b.chunk.js"
+    "revision": "c5a661342a8906dc2e90",
+    "url": "/trickl/static/js/main.c5a66134.chunk.js"
   },
   {
     "revision": "9440909edfa6c4e056ed",
     "url": "/trickl/static/js/1.9440909e.chunk.js"
   },
   {
-    "revision": "d8f5a82b9df19f75a4a6",
-    "url": "/trickl/static/css/main.af34e906.chunk.css"
+    "revision": "c5a661342a8906dc2e90",
+    "url": "/trickl/static/css/main.3d512683.chunk.css"
   },
   {
     "revision": "9440909edfa6c4e056ed",
     "url": "/trickl/static/css/1.5bdf1f2f.chunk.css"
   },
   {
-    "revision": "496828466e2aab8ce844f1131d87990f",
+    "revision": "0aa74eb7b0ea0e4d9be19d44cd163b34",
     "url": "/trickl/index.html"
   }
 ];
