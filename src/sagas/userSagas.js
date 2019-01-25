@@ -123,6 +123,7 @@ export function* fetchUser() {
   try {
     let userInfo = yield call(getUser);
     if (!userInfo) {
+      throw new Error("Can't fetch user for some reason");
       userInfo = yield call(createUser);
       yield put(
         createColumnRequest({ thoughtRoot: userInfo.thoughtRoot, text: " " })

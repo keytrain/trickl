@@ -34,7 +34,10 @@ class ColumnComponent extends Component {
               ))}
             </div>
             <div className="add-thought-icon">
-              <button className="button-secondary" onClick={this.addThought}>
+              <button
+                className="button-secondary add-thought-button"
+                onClick={this.addThought}
+              >
                 +
               </button>
             </div>

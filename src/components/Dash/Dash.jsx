@@ -6,6 +6,7 @@ import { setAuthenticated, logoutUser } from "../../actions/currentUserActions";
 import Column from "./Column";
 
 import "./Dash.css";
+import Logo from "./Logo";
 
 class DashComponent extends Component {
   constructor(props) {
@@ -14,15 +15,6 @@ class DashComponent extends Component {
       isProfileOpen: false,
     };
   }
-
-  componentDidMount = () => {
-    // document.body.onscroll = e => {
-    //   console.log(e);
-    //   if (e.srcElement.activeElement.nodeName === "TEXTAREA") {
-    //     e.stopPropagation();
-    //   }
-    // };
-  };
 
   handleLogout = event => {
     event.preventDefault();
@@ -40,11 +32,11 @@ class DashComponent extends Component {
     return (
       <div className="wrapper">
         <nav>
-          <div className="user">
-            <div
-              className="avatar"
-              onClick={() => this.setState({ isProfileOpen: !isProfileOpen })}
-            />
+          <div
+            className="user"
+            onClick={() => this.setState({ isProfileOpen: !isProfileOpen })}
+          >
+            <Logo />
           </div>
         </nav>
         {isProfileOpen && (

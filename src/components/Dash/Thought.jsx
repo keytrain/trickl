@@ -13,12 +13,17 @@ class ThoughtComponent extends Component {
       draft: props.thought,
       dirty: false,
       focus: false,
+      isEntryClosed: true,
     };
 
     this.textArea = React.createRef();
   }
 
   componentDidMount() {
+    this.refreshHeight();
+  }
+
+  componentDidUpdate() {
     this.refreshHeight();
   }
 
@@ -122,21 +127,43 @@ class ThoughtComponent extends Component {
     return finalCSS;
   };
 
+  checkEntryClosed = () => {
+    if (this.state.isEntryClosed) {
+      return "entry entry-closed";
+    }
+    return "entry";
+  };
+
   render() {
-    const { draft, dirty } = this.state;
+    const { draft, dirty, isEntryClosed } = this.state;
     return (
-      <div className="entry-container">
+      <div
+        className="entry-container"
+        onClick={() => {
+          this.setState({ isEntryClosed: false });
+        }}
+      >
         <textarea
           ref={this.textArea}
           rows="1"
-          className="entry"
+          className={this.checkEntryClosed()}
           style={this.handleTextAreaStyle()}
+          disabled={isEntryClosed}
           onChange={this.handleEntry}
           value={draft}
           autoCapitalize="none"
           spellCheck="false"
           onKeyDown={this.handleKeyDown}
         />
+        {!isEntryClosed && (
+          <div
+            className="close-entry"
+            onClick={e => {
+              e.stopPropagation();
+              this.setState({ isEntryClosed: true });
+            }}
+          />
+        )}
         <div className="entry-actions">
           {dirty && (
             <Fragment>

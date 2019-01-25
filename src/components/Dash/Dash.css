@@ -15,6 +15,7 @@ nav {
 }
 
 .user {
+  cursor: pointer;
   justify-items: flex-end;
 }
 

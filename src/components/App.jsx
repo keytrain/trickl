@@ -6,6 +6,7 @@ import { loadSession } from "../actions/currentUserActions";
 import Auth from "./Auth/Auth";
 import Login from "./Login/Login";
 import Dash from "./Dash/Dash";
+import Logo from "./Dash/Logo";
 import NotFound from "./NotFound";
 
 import "./App.css";
@@ -21,7 +22,7 @@ class AppComponent extends Component {
     return (
       <Router>
         {isLoadingSession ? (
-          <div className="loading-content">Checking Session...</div>
+          <Logo />
         ) : (
           <Switch>
             <Route exact path="/" component={Auth} />
