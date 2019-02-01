@@ -40,10 +40,13 @@ class DashComponent extends Component {
           </div>
         </nav>
         {isProfileOpen && (
-          <div className="profile-actions">
-            <button onClick={this.handleLogout} className="button-secondary">
-              logout
-            </button>
+          <div>
+            {/* <div className="profile-text">v0.1</div> */}
+            <div className="profile-actions">
+              <button onClick={this.handleLogout} className="button-secondary">
+                logout
+              </button>
+            </div>
           </div>
         )}
         <div className="content">

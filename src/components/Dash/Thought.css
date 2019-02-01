@@ -9,8 +9,8 @@
   font-size: 16px;
   resize: none;
   outline: none;
-  /* border: 1.5px solid hsl(212, 30%, 94%); */
-  border: 0;
+  border: 1.5px solid hsl(243, 30%, 94%);
+  /* border: 0; */
   /* border-top: 1px solid hsl(212, 30%, 94%); */
   /* border: 1px solid hsl(212, 30%, 94%); */
   /* box-shadow: 0 0 5px 0 hsl(212, 10%, 85%); */
@@ -27,7 +27,7 @@
   -moz-appearance: none;
   appearance: none;
   -webkit-overflow-scrolling: touch;
-  transition: 90ms ease-out max-height;
+  transition: 140ms ease-out max-height;
 }
 .entry:disabled {
   opacity: 1;
@@ -50,11 +50,11 @@
 .close-entry {
   position: absolute;
   top: 0;
-  width: 20px;
-  background: #efefef;
-  left: 0;
+  width: 16px;
+  background: hsl(243, 16%, 90%);
+  right: 0;
   bottom: 0;
-  border-radius: 0 0 0 20px;
+  border-radius: 0 20px 20px 0px;
   cursor: pointer;
   color: #777;
   line-height: 0;

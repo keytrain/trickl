@@ -60,7 +60,13 @@ nav {
   font-weight: initial;
   font-size: 16px;
 }
+
 .add:active {
   color: #000;
   background: none;
+}
+
+.profile-text {
+  font-size: 16px;
+  text-align: center;
 }
