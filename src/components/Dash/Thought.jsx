@@ -13,18 +13,9 @@ class ThoughtComponent extends Component {
       draft: props.thought,
       dirty: false,
       focus: false,
-      isEntryClosed: true,
     };
 
     this.textArea = React.createRef();
-  }
-
-  componentDidMount() {
-    this.refreshHeight();
-  }
-
-  componentDidUpdate() {
-    this.refreshHeight();
   }
 
   refreshHeight() {
@@ -54,14 +45,11 @@ class ThoughtComponent extends Component {
 
   resetEntry = () => {
     const { thought } = this.props;
-    this.setState({ draft: thought, dirty: false }, () => {
-      this.refreshHeight();
-    });
+    this.setState({ draft: thought, dirty: false }, () => {});
   };
 
   handleEntry = e => {
     const { value } = e.target;
-    this.refreshHeight();
     this.setState({ draft: value, dirty: true });
   };
 
@@ -78,7 +66,7 @@ class ThoughtComponent extends Component {
   handleKeyDown = e => {
     const caretStart = this.textArea.current.selectionStart;
     const caretEnd = this.textArea.current.selectionEnd;
-    console.log(e.keyCode);
+    // console.log(e.keyCode);
     if (e.ctrlKey) {
       switch (e.keyCode) {
         case 83:
@@ -135,35 +123,20 @@ class ThoughtComponent extends Component {
   };
 
   render() {
-    const { draft, dirty, isEntryClosed } = this.state;
+    const { draft, dirty } = this.state;
     return (
-      <div
-        className="entry-container"
-        onClick={() => {
-          this.setState({ isEntryClosed: false });
-        }}
-      >
+      <div className="entry-container">
         <textarea
           ref={this.textArea}
           rows="1"
-          className={this.checkEntryClosed()}
+          className={`entry ${dirty ? "entry-dirty" : ""}`}
           style={this.handleTextAreaStyle()}
-          disabled={isEntryClosed}
           onChange={this.handleEntry}
           value={draft}
           autoCapitalize="none"
           spellCheck="false"
           onKeyDown={this.handleKeyDown}
         />
-        {!isEntryClosed && (
-          <div
-            className="close-entry"
-            onClick={e => {
-              e.stopPropagation();
-              this.setState({ isEntryClosed: true });
-            }}
-          />
-        )}
         <div className="entry-actions">
           {dirty && (
             <Fragment>

@@ -4,6 +4,7 @@ import {
   ADD_THOUGHT_SUCCESS,
   DEL_THOUGHT_SUCCESS,
   EDIT_THOUGHT_SUCCESS,
+  SET_CURRENT_THOUGHT,
 } from "../actions/thoughtActions";
 
 const currColumnText = (state = [], { type, data }) => {
@@ -38,9 +39,21 @@ const currRoot = (state = "", { type, data }) => {
   }
 };
 
+const currThought = (state = 0, { type, data }) => {
+  switch (type) {
+    case SET_CURRENT_THOUGHT:
+      return data.index;
+    case DEL_THOUGHT_SUCCESS:
+      return 0;
+    default:
+      return state;
+  }
+};
+
 const thoughtReducer = combineReducers({
   currRoot,
   currColumnText,
+  currThought,
 });
 
 export default thoughtReducer;

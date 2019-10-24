@@ -1,7 +1,22 @@
 .wrapper {
-  max-width: 800px;
-  margin: 0 auto;
   position: relative;
+}
+
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 270px;
+  overflow: auto;
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
 
 nav {
@@ -10,8 +25,8 @@ nav {
   opacity: 0.98;
   display: flex;
   width: 100%;
-  align-items: center;
-  justify-content: space-around;
+  /* align-items: center; */
+  /* justify-content: space-around; */
 }
 
 .user {
@@ -28,8 +43,8 @@ nav {
 }
 
 .profile-actions {
-  text-align: center;
-  padding: 5px;
+  /* text-align: center; */
+  /* padding: 5px; */
   /* border-top: 1px solid #eaeaea; */
   /* background: #f1f1f1; */
 }
@@ -38,9 +53,23 @@ nav {
   color: #888;
 }
 
+.content-container {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 270px;
+  overflow: hidden;
+}
+
 .content {
-  //  margin-top: 4rem;
-  padding: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
 
 .menu {

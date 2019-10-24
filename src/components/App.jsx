@@ -22,7 +22,9 @@ class AppComponent extends Component {
     return (
       <Router>
         {isLoadingSession ? (
-          <Logo />
+          <div className="logo-loader">
+            <Logo />
+          </div>
         ) : (
           <Switch>
             <Route exact path="/" component={Auth} />

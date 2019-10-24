@@ -1,0 +1,16 @@
+.tile-container {
+}
+
+.tile {
+  padding: 3px 15px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.tile:hover {
+  background: #ddd;
+}
+
+.tile-selected {
+  background: hsl(243, 20%, 88%);
+}

@@ -18,6 +18,8 @@ export const FETCH_COLUMN_REQUESTED = "FETCH_COLUMN_REQUESTED";
 export const FETCH_COLUMN_SUCCESS = "FETCH_COLUMN_SUCCESS";
 export const FETCH_COLUMN_FAILURE = "FETCH_COLUMN_FAILURE";
 
+export const SET_CURRENT_THOUGHT = "SET_CURRENT_THOUGHT";
+
 export const createColumnRequest = data => ({
   type: CREATE_COLUMN_REQUESTED,
   data,
@@ -90,5 +92,10 @@ export const fetchColumnSuccess = data => ({
 
 export const fetchColumnFailure = data => ({
   type: FETCH_COLUMN_FAILURE,
+  data,
+});
+
+export const setCurrentThought = data => ({
+  type: SET_CURRENT_THOUGHT,
   data,
 });

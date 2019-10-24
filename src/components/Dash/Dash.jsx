@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Redirect } from "react-router";
 import { connect } from "react-redux";
 
@@ -7,6 +7,7 @@ import Column from "./Column";
 
 import "./Dash.css";
 import Logo from "./Logo";
+import Content from "./Content";
 
 class DashComponent extends Component {
   constructor(props) {
@@ -31,27 +32,44 @@ class DashComponent extends Component {
     }
     return (
       <div className="wrapper">
-        <nav>
-          <div
-            className="user"
-            onClick={() => this.setState({ isProfileOpen: !isProfileOpen })}
-          >
-            <Logo />
-          </div>
-        </nav>
-        {isProfileOpen && (
-          <div>
-            {/* <div className="profile-text">v0.1</div> */}
-            <div className="profile-actions">
-              <button onClick={this.handleLogout} className="button-secondary">
-                logout
-              </button>
+        {thoughtRoot && (
+          <Fragment>
+            <div className="sidebar-container">
+              <div className="sidebar">
+                <nav>
+                  <div
+                    className="user"
+                    onClick={() =>
+                      this.setState({ isProfileOpen: !isProfileOpen })
+                    }
+                  >
+                    <Logo />
+                  </div>
+                </nav>
+                {isProfileOpen && (
+                  <div>
+                    {/* <div className="profile-text">v0.1</div> */}
+                    <div className="profile-actions">
+                      <button
+                        onClick={this.handleLogout}
+                        className="button-secondary"
+                      >
+                        logout
+                      </button>
+                    </div>
+                  </div>
+                )}
+                {thoughtRoot && <Column root={thoughtRoot} />}
+              </div>
             </div>
-          </div>
+
+            <div className="content-container">
+              <div className="content">
+                {thoughtRoot && <Content root={thoughtRoot} />}
+              </div>
+            </div>
+          </Fragment>
         )}
-        <div className="content">
-          {thoughtRoot && <Column root={thoughtRoot} />}
-        </div>
       </div>
     );
   }

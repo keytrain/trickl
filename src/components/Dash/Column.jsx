@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
-import Thought from "./Thought";
+import Tile from "./Tile";
 
 import "./Column.css";
 import { addThoughtRequest } from "../../actions/thoughtActions";
@@ -25,9 +25,9 @@ class ColumnComponent extends Component {
           <Fragment>
             <div>
               {currColumnText.map((e, idx) => (
-                <Thought
+                <Tile
                   parentId={thoughtRoot}
-                  thought={e.text ? e.text : ""}
+                  thought={e.text ? e.text.split("\n")[0] : ""}
                   index={idx}
                   key={e.id}
                 />

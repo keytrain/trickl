@@ -1,12 +1,10 @@
 .logo-container {
-  margin: 0 auto;
-  /* width: auto; */
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 .teardrop {
-  height: 45px;
-  width: 45px;
+  height: 35px;
+  width: 35px;
   border-radius: 0 30px 30px 30px;
   background: hsl(243, 26%, 70%);
   transform: rotate(20deg);

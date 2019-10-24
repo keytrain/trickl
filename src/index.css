@@ -109,7 +109,7 @@ input[type="password"] {
   border-radius: 5px;
   outline: none;
   border: solid 2px transparent;
-  background-color: #f4f4f4;
+  background-color: #ebebeb;
   padding: 15px;
 }
 input[type="text"]:focus,
