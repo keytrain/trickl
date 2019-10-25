@@ -7,11 +7,6 @@ import "./Column.css";
 import { addThoughtRequest } from "../../actions/thoughtActions";
 
 class ColumnComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   addThought = () => {
     const { addThought, thoughtRoot } = this.props;
     addThought(thoughtRoot, null);
@@ -34,10 +29,7 @@ class ColumnComponent extends Component {
               ))}
             </div>
             <div className="add-thought-icon">
-              <button
-                className="button-secondary add-thought-button"
-                onClick={this.addThought}
-              >
+              <button className="add-thought-button" onClick={this.addThought}>
                 +
               </button>
             </div>
@@ -56,9 +48,11 @@ const mapStateToProps = state => {
       userData: { thoughtRoot },
     },
     data: { currColumnText },
+    ui: { collapseSidebar },
   } = state;
   return {
     currColumnText,
+    collapseSidebar,
     thoughtRoot,
   };
 };

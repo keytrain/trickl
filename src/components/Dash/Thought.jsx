@@ -140,14 +140,14 @@ class ThoughtComponent extends Component {
         <div className="entry-actions">
           {dirty && (
             <Fragment>
+              <button className="button-secondary" onClick={this.saveEntry}>
+                Save
+              </button>
               <button className="button-secondary" onClick={this.resetEntry}>
                 Cancel
               </button>
               <button className="button-secondary" onClick={this.deleteEntry}>
                 Delete
-              </button>
-              <button className="button-secondary" onClick={this.saveEntry}>
-                Save
               </button>
             </Fragment>
           )}

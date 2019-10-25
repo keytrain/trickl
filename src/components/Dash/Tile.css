@@ -4,7 +4,7 @@
 .tile {
   padding: 3px 15px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .tile:hover {

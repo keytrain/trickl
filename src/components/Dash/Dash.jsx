@@ -8,6 +8,7 @@ import Column from "./Column";
 import "./Dash.css";
 import Logo from "./Logo";
 import Content from "./Content";
+import { collapseSidebar } from "../../actions/uiActions";
 
 class DashComponent extends Component {
   constructor(props) {
@@ -24,7 +25,12 @@ class DashComponent extends Component {
   };
 
   render() {
-    const { authenticated, thoughtRoot } = this.props;
+    const {
+      authenticated,
+      thoughtRoot,
+      collapseSidebar,
+      _collapseSidebar,
+    } = this.props;
     const { isProfileOpen } = this.state;
 
     if (!authenticated) {
@@ -34,7 +40,11 @@ class DashComponent extends Component {
       <div className="wrapper">
         {thoughtRoot && (
           <Fragment>
-            <div className="sidebar-container">
+            <div
+              className={`sidebar-container ${
+                collapseSidebar ? "sidebar-container-collapse" : ""
+              }`}
+            >
               <div className="sidebar">
                 <nav>
                   <div
@@ -63,10 +73,27 @@ class DashComponent extends Component {
               </div>
             </div>
 
-            <div className="content-container">
+            <div
+              className={`content-container ${
+                collapseSidebar ? "content-container-collapse" : ""
+              }`}
+            >
               <div className="content">
                 {thoughtRoot && <Content root={thoughtRoot} />}
               </div>
+            </div>
+
+            <div
+              className={`collapse-thought-container ${
+                collapseSidebar ? "collapse-thought-transition" : ""
+              }`}
+            >
+              <button
+                className="collapse-thought-button"
+                onClick={_collapseSidebar}
+              >
+                {`<`}
+              </button>
             </div>
           </Fragment>
         )}
@@ -81,9 +108,11 @@ const mapStateToProps = state => {
       session: { authenticated },
       userData,
     },
+    ui: { collapseSidebar },
   } = state;
   return {
     authenticated,
+    collapseSidebar,
     thoughtRoot: userData && userData.thoughtRoot,
   };
 };
@@ -91,6 +120,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   setAuth: status => dispatch(setAuthenticated(status)),
   logout: () => dispatch(logoutUser()),
+  _collapseSidebar: bool => dispatch(collapseSidebar({ bool })),
 });
 
 export default connect(
