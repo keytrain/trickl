@@ -1,4 +1,4 @@
-export default {
+const config = {
   apiGateway: {
     REGION: "us-west-1",
     URL: "https://fbj97y4ndj.execute-api.us-west-1.amazonaws.com/prod",
@@ -10,3 +10,5 @@ export default {
     IDENTITY_POOL_ID: "us-west-2:54671dce-0a57-4b44-a212-1d8cf1b2f359",
   },
 }
+
+export default config;

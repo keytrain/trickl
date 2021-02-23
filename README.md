@@ -1,3 +1,3 @@
 # trickl
 
-ui
+Privacy focused notes app.

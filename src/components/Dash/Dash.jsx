@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { useState } from "react";
 import { Redirect } from "react-router";
 import { connect } from "react-redux";
 
@@ -10,99 +10,62 @@ import Logo from "./Logo";
 import Content from "./Content";
 import { collapseSidebar } from "../../actions/uiActions";
 
-class DashComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isProfileOpen: false,
-    };
-  }
+function DashComponent({ authenticated, thoughtRoot, collapseSidebar, _collapseSidebar, logout }) {
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-  handleLogout = event => {
+  function handleLogout(event) {
     event.preventDefault();
-    const { logout } = this.props;
     logout();
-  };
-
-  render() {
-    const {
-      authenticated,
-      thoughtRoot,
-      collapseSidebar,
-      _collapseSidebar,
-    } = this.props;
-    const { isProfileOpen } = this.state;
-
-    if (!authenticated) {
-      return <Redirect to="/login" />;
-    }
-    return (
-      <div className="wrapper">
-        {thoughtRoot && (
-          <Fragment>
-            <div
-              className={`sidebar-container ${
-                collapseSidebar ? "sidebar-container-collapse" : ""
-              }`}
-            >
-              <div className="sidebar">
-                <nav>
-                  <div
-                    className="user"
-                    onClick={() =>
-                      this.setState({ isProfileOpen: !isProfileOpen })
-                    }
-                  >
-                    <Logo />
-                  </div>
-                </nav>
-                {isProfileOpen && (
-                  <div>
-                    {/* <div className="profile-text">v0.1</div> */}
-                    <div className="profile-actions">
-                      <button
-                        onClick={this.handleLogout}
-                        className="button-secondary"
-                      >
-                        logout
-                      </button>
-                    </div>
-                  </div>
-                )}
-                {thoughtRoot && <Column root={thoughtRoot} />}
-              </div>
-            </div>
-
-            <div
-              className={`content-container ${
-                collapseSidebar ? "content-container-collapse" : ""
-              }`}
-            >
-              <div className="content">
-                {thoughtRoot && <Content root={thoughtRoot} />}
-              </div>
-            </div>
-
-            <div
-              className={`collapse-thought-container ${
-                collapseSidebar ? "collapse-thought-transition" : ""
-              }`}
-            >
-              <button
-                className="collapse-thought-button"
-                onClick={_collapseSidebar}
-              >
-                {`<`}
-              </button>
-            </div>
-          </Fragment>
-        )}
-      </div>
-    );
   }
+
+  if (!authenticated) {
+    return <Redirect to="/login" />;
+  }
+  return (
+    <div className="wrapper">
+      {thoughtRoot && (
+        <>
+          <div
+            className={`sidebar-container ${collapseSidebar ? "sidebar-container-collapse" : ""}`}
+          >
+            <div className="sidebar">
+              <nav>
+                <div className="user">
+                  <Logo />
+                </div>
+              </nav>
+              {isProfileOpen && <div>{/* <div className="profile-text">v0.1</div> */}</div>}
+              {thoughtRoot && <Column root={thoughtRoot} />}
+              <div className="menu-bottom">
+                <div className="profile-actions">
+                  <button onClick={handleLogout} className="button-secondary">
+                    logout
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            className={`content-container ${collapseSidebar ? "content-container-collapse" : ""}`}
+          >
+            <div className="content">{thoughtRoot && <Content root={thoughtRoot} />}</div>
+          </div>
+
+          {/* <div
+            className={`collapse-thought-container ${
+              collapseSidebar ? "collapse-thought-transition" : ""
+            }`}
+          >
+            <button className="collapse-thought-button" onClick={_collapseSidebar}></button>
+          </div> */}
+        </>
+      )}
+    </div>
+  );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const {
     currentUser: {
       session: { authenticated },
@@ -117,13 +80,10 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  setAuth: status => dispatch(setAuthenticated(status)),
+const mapDispatchToProps = (dispatch) => ({
+  setAuth: (status) => dispatch(setAuthenticated(status)),
   logout: () => dispatch(logoutUser()),
-  _collapseSidebar: bool => dispatch(collapseSidebar({ bool })),
+  _collapseSidebar: (bool) => dispatch(collapseSidebar({ bool })),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DashComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(DashComponent);

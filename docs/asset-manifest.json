@@ -1,19 +1,18 @@
 {
   "files": {
-    "main.css": "/trickl/static/css/main.a07b882d.chunk.css",
-    "main.js": "/trickl/static/js/main.f4f6b4e0.chunk.js",
-    "runtime-main.js": "/trickl/static/js/runtime-main.7f0ededc.js",
+    "main.css": "/trickl/static/css/main.5183045c.chunk.css",
+    "main.js": "/trickl/static/js/main.65d12312.chunk.js",
+    "runtime-main.js": "/trickl/static/js/runtime-main.2323b43c.js",
     "static/css/2.24bf1742.chunk.css": "/trickl/static/css/2.24bf1742.chunk.css",
-    "static/js/2.30de0496.chunk.js": "/trickl/static/js/2.30de0496.chunk.js",
+    "static/js/2.f763bcaa.chunk.js": "/trickl/static/js/2.f763bcaa.chunk.js",
     "index.html": "/trickl/index.html",
-    "precache-manifest.b5d62f7f5c4f8e3f26ae71fbf5b5b14e.js": "/trickl/precache-manifest.b5d62f7f5c4f8e3f26ae71fbf5b5b14e.js",
-    "service-worker.js": "/trickl/service-worker.js"
+    "static/js/2.f763bcaa.chunk.js.LICENSE.txt": "/trickl/static/js/2.f763bcaa.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.7f0ededc.js",
+    "static/js/runtime-main.2323b43c.js",
     "static/css/2.24bf1742.chunk.css",
-    "static/js/2.30de0496.chunk.js",
-    "static/css/main.a07b882d.chunk.css",
-    "static/js/main.f4f6b4e0.chunk.js"
+    "static/js/2.f763bcaa.chunk.js",
+    "static/css/main.5183045c.chunk.css",
+    "static/js/main.65d12312.chunk.js"
   ]
 }

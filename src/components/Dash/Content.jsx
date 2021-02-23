@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Thought from "./Thought";
@@ -11,7 +11,7 @@ class ContentComponent extends Component {
     return (
       <div className="content">
         {currColumnText.length > 0 && currThought !== null ? (
-          <Fragment>
+          <>
             <Thought
               parentId={thoughtRoot}
               thought={
@@ -22,7 +22,7 @@ class ContentComponent extends Component {
               index={currThought}
               key={currColumnText[currThought].id}
             />
-          </Fragment>
+          </>
         ) : (
           <div className="loading-content" />
         )}

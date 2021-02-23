@@ -19,7 +19,7 @@
   top: 0;
   bottom: 0;
   left: 200px;
-  transition: left 400ms cubic-bezier(1, 0.1, 0, 0.815);
+  /* transition: left 200ms cubic-bezier(1, 0.1, 0, 0.815); */
   overflow: hidden;
 }
 
@@ -34,8 +34,9 @@
 .collapse-thought-container {
   position: absolute;
   top: 0px;
-  left: 180px;
-  transition: left 400ms cubic-bezier(1, 0.1, 0, 0.815);
+  bottom: 0;
+  left: 202px;
+  /* transition: left 200ms cubic-bezier(1, 0.1, 0, 0.815); */
 }
 
 .collapse-thought-transition {
@@ -45,8 +46,8 @@
 
 .collapse-thought-button {
   padding: 0px !important;
-  width: 20px;
-  height: 20px !important;
+  width: 8px;
+  height: 10px !important;
   font-size: 9px;
   line-height: 0px !important;
   background: hsl(243, 20%, 88%);
@@ -66,16 +67,12 @@
 
 nav {
   padding: 20px 10px;
-  /* border-bottom: 1px solid #eee; */
-  opacity: 0.98;
   display: flex;
   width: 100%;
-  /* align-items: center; */
-  /* justify-content: space-around; */
 }
 
 .user {
-  cursor: pointer;
+  padding-left: 2px;
   justify-items: flex-end;
 }
 
@@ -95,7 +92,8 @@ nav {
 }
 
 .profile-actions button {
-  color: #888;
+  padding-left: 17px;
+  color: #aaa;
 }
 
 .content {
