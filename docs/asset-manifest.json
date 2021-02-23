@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/trickl/static/css/main.5183045c.chunk.css",
-    "main.js": "/trickl/static/js/main.65d12312.chunk.js",
+    "main.js": "/trickl/static/js/main.82efec5f.chunk.js",
     "runtime-main.js": "/trickl/static/js/runtime-main.2323b43c.js",
     "static/css/2.24bf1742.chunk.css": "/trickl/static/css/2.24bf1742.chunk.css",
-    "static/js/2.f763bcaa.chunk.js": "/trickl/static/js/2.f763bcaa.chunk.js",
+    "static/js/2.19737ebc.chunk.js": "/trickl/static/js/2.19737ebc.chunk.js",
     "index.html": "/trickl/index.html",
-    "static/js/2.f763bcaa.chunk.js.LICENSE.txt": "/trickl/static/js/2.f763bcaa.chunk.js.LICENSE.txt"
+    "static/js/2.19737ebc.chunk.js.LICENSE.txt": "/trickl/static/js/2.19737ebc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2323b43c.js",
     "static/css/2.24bf1742.chunk.css",
-    "static/js/2.f763bcaa.chunk.js",
+    "static/js/2.19737ebc.chunk.js",
     "static/css/main.5183045c.chunk.css",
-    "static/js/main.65d12312.chunk.js"
+    "static/js/main.82efec5f.chunk.js"
   ]
 }
